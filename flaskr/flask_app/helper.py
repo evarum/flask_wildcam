@@ -1,8 +1,7 @@
 import os
-
 from flaskr.flask_app.config import PATH, PIC_ENDUNG, VID_ENDUNG
 
-
+#creates dictionary with three connected keys filename, date, time
 def get_file_meta(filename):
     meta = {}
     meta['filename'] = filename
@@ -12,15 +11,17 @@ def get_file_meta(filename):
     return meta
 
 
-
+#zuordnung von date,time zu element im ordner (bild oder video)
 def data_to_html_file(end):
-    filename = data_to_cut(end)
+    filenames = data_to_cut(end)
     files = []
-    for i in filename:
-            meta = get_file_meta(i)
+    #schrittweise zuordnen und speichern von filename
+    for filename in filenames:
+            meta = get_file_meta(filename)
             files.append(meta)
     return files
 
+#teilt filename in event, date/time, endung
 def filenames_split(video):
     cut = video.split('.')
     cut = cut[0]
