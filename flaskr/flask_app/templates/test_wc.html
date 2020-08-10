@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<HTML>
+<Body>
+<h1> Wildkamera 01 </h1>
+<iframe src="http://www.ixq.de/uhrzeit/white.php" width="90" height="40" frameborder="0" ></iframe>
+<p> </p>
+<h2> {{heading}} </h2>
+
+<OL>
+{% for file in files -%}
+    <li> <img src =	"{{ url_for('images', filename=file['filename']) }}">
+		<a href="https://www.w3schools.com/html/html_links.asp">tutorial</a>
+		<div> {{file['date']}} </div>
+			<div> {{file['time']}} </div>
+	</li>
+{% endfor %}
+</OL>
+</Body>
+</HTML>
