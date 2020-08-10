@@ -13,12 +13,10 @@ def get_file_meta(filename):
 
 
 
-def data_to_html_file():
-    direc = PATH
-    ext = PIC_ENDUNG
+def data_to_html_file(end):
+    filename = data_to_cut(end)
     files = []
-    for i in os.listdir(direc):
-        if os.path.splitext(i)[1] == ext:
+    for i in filename:
             meta = get_file_meta(i)
             files.append(meta)
     return files
@@ -58,4 +56,4 @@ def data_to_cut(end):
     print(filenames)
     return filenames
 
-data_to_cut(VID_ENDUNG)
+data_to_html_file(PIC_ENDUNG)
