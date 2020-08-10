@@ -1,6 +1,6 @@
 import os
 
-from flaskr.flask_app.config import PATH, ENDUNG
+from flaskr.flask_app.config import PATH, PIC_ENDUNG
 
 
 def get_file_meta(filename):
@@ -14,7 +14,7 @@ def get_file_meta(filename):
 
 def data_to_html_file():
     direc = PATH
-    ext = ENDUNG
+    ext = PIC_ENDUNG
     files = []
     for i in os.listdir(direc):
         if os.path.splitext(i)[1] == ext:
@@ -26,3 +26,10 @@ def data_to_html_file():
     #template = env.get_template('showimage.jinja')
 
     return files
+
+def filenames_split(video):
+    cut = video.split('.')
+    cut = cut[0]
+    cut = cut.split('-')
+    cut = cut[1]
+    return cut

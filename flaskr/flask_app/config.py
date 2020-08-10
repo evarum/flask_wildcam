@@ -1,2 +1,3 @@
 PATH = '/home/eva/workspace/wc_videos/'
-ENDUNG = '.jpg'
+PIC_ENDUNG = '.jpg'
+VID_ENDUNG = '.mkv'
