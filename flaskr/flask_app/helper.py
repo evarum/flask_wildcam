@@ -30,24 +30,7 @@ def filenames_split(video):
     return cut
 
 def cut_data_fixed_to_filename(end):
-    ext = end
-    direc = PATH
-    #liste aller Elemente im Path-Ordner (filenames not sorted)
-    elements_list = []
-    for i in os.listdir(direc):
-        if os.path.splitext(i)[1] == ext:
-            elements_list.append(i)
-    #Dictionary to store eventual date/time together with filename
-    cut_elements = {}
-    for element in elements_list:
-        #filename shortened to date/time
-        cut_element = filenames_split(element)
-       #Dictionary-eintrag cut_element(date/time): element(filename)
-        cut_elements[cut_element] = element
-    #keys of cut_elements to list
-    list_cut_element = list(cut_elements.keys())
-    #sorted list new to old
-    list_cut_element.sort(reverse = True)
+    list_cut_element, cut_elements = data_to_cut(end)
     #filenames will be sorted list of cut_elements' values
     filenames = []
     for i in list_cut_element:
@@ -76,8 +59,7 @@ def data_to_cut(end):
     list_cut_element = list(cut_elements.keys())
     #sorted list new to old
     list_cut_element.sort()
-    return list_cut_element
-# data_to_html_file(PIC_ENDUNG)
+    return list_cut_element, cut_elements
 
 # two sorted lists are compared and written down if they fullfill the following condition: lower_limit <= element_between < upper_limit
 def paar_sort(list1, list2):
@@ -114,8 +96,19 @@ def paar_sort(list1, list2):
     return paar
 
 def pic_vid_connection():
-    limit_list = data_to_cut(VID_ENDUNG)
-    pic_list = data_to_cut(PIC_ENDUNG)
-    paar_sort(limit_list, pic_list)
-
-pic_vid_connection()
+    limit_list, limit_dict = data_to_cut(VID_ENDUNG)
+   # print(limit_list)
+    # print(limit_dict)
+    pic_list, pic_dict = data_to_cut(PIC_ENDUNG)
+    paar_list = paar_sort(limit_list, pic_list)
+    results = []
+    for paar in paar_list:
+        cut_vid = paar[0]
+        cut_pic = paar[1]
+        video_value = limit_dict[cut_vid]
+        picture_value = pic_dict[cut_pic]
+        results.append([video_value, picture_value])
+    return results
+x = pic_vid_connection()
+print(x)
+# cut_data_fixed_to_filename(VID_ENDUNG)
