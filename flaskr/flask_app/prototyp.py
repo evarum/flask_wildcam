@@ -24,10 +24,35 @@ def paar_sort(list1, list2):
                 if element_between > upper_limit:
                     # exit loop and go to next element_between
                     break
-                # appending lower_limit and element_between to list paar
+                 # appending lower_limit and element_between to list paar
                 paar.append([lower_limit,element_between])
     print(paar)
-    # giving back the finished sets
-    return paar
+     # giving back the finished sets
+#     return paar
 
+
+
+# def paar_sort(list1, list2):
+#     # limits_list sets the borders of possible placement for elements of liste_between
+#     limits_list = list1
+#     liste_between = list2
+#     paar = []
+#     # iteration through limits_list
+#     for lower_limit in limits_list:
+#        # print(lower_limit)
+#         for element_between in liste_between:
+#             # is element_between bigger/equal than the lower_limit?
+#             if element_between >= lower_limit:
+#                 # defining upper_limit
+#                 upper_limit = limits_list.index(lower_limit)+1
+#                 # is element_between bigger than the upper_limit?
+#                 #print('element_between', element_between)
+#                 if element_between > upper_limit:
+#                     # exit loop and go to next element_between
+#                     continue
+#                 # appending lower_limit and element_between to list paar
+#                 paar.append([lower_limit,element_between])
+#     print(paar)
+#     # giving back the finished sets
+#     return paar
 paar_sort(zahlen, k_zahlen)
