@@ -1,4 +1,4 @@
-# Noah
+#
 from flask import (render_template)
 
 from flaskr.flask_app.helper import get_file_meta

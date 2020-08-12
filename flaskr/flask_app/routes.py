@@ -9,6 +9,7 @@ from flaskr.flask_app.helper import data_to_html_file
 @app.route('/')
 @app.route('/index')
 def index( *args):
+    # defines the subheading
     heading = 'Filme'
     files = data_to_html_file()
     return render_template('test_wc.html',files=files, heading=heading)

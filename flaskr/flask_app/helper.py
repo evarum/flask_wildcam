@@ -1,7 +1,6 @@
 import os
 from flaskr.flask_app.config import PATH, PIC_ENDUNG, VID_ENDUNG
 
-# Noah
 # creates dictionary with three connected keys filename, date, time
 def get_file_meta(filename):
     meta = {}
@@ -9,12 +8,11 @@ def get_file_meta(filename):
     meta['time'] = 't'
     return meta
 
-# Eva
-# zuordnung von date,time zu element im ordner (bild oder video)
+# assignment of date,time to element in folder (picture or video)
 def data_to_html_file():
     filenames = pic_vid_connection()
     files = []
-    # schrittweise zuordnen und speichern von filename
+    # gradually assigning and saving of filename
     for file_pair in filenames:
         vid_file = file_pair[0]
         pic_file = file_pair[1]
@@ -24,8 +22,7 @@ def data_to_html_file():
         files.append(meta)
     return files
 
-# Eva
-# teilt filename in event, date/time, endung
+# split filename in event, date/time, ending
 def filenames_split(video):
     cut = video.split('.')
     cut = cut[0]
@@ -33,7 +30,6 @@ def filenames_split(video):
     cut = cut[1]
     return cut
 
-# Eva
 def cut_data_fixed_to_filename(end):
     list_cut_element, cut_elements = data_to_cut(end)
     # filenames will be sorted list of cut_elements' values
@@ -44,25 +40,24 @@ def cut_data_fixed_to_filename(end):
         filenames.append(element_value)
     return filenames
 
-# Eva
 def data_to_cut(end):
     ext = end
     direc = PATH
-    #liste aller Elemente im Path-Ordner (filenames not sorted)
+    # list of all elements in Path-folder (filenames not sorted)
     elements_list = []
     for i in os.listdir(direc):
         if os.path.splitext(i)[1] == ext:
             elements_list.append(i)
-    #Dictionary to store eventual date/time together with filename
+    # Dictionary to store eventual date/time together with filename
     cut_elements = {}
     for element in elements_list:
-        #filename shortened to date/time
+        # filename shortened to date/time
         cut_element = filenames_split(element)
-       #Dictionary-eintrag cut_element(date/time): element(filename)
+       # Dictionary-entry cut_element(date/time): element(filename)
         cut_elements[cut_element] = element
-    #keys of cut_elements to list
+    # keys of cut_elements to list
     list_cut_element = list(cut_elements.keys())
-    #sorted list new to old
+    # sorted list new to old
     list_cut_element.sort()
     return list_cut_element, cut_elements
 
@@ -112,14 +107,16 @@ def paar_sort(list1, list2):
     # giving back the finished sets
     return paar
 
-# Noah
 def pic_vid_connection():
+
     limit_list, limit_dict = data_to_cut(VID_ENDUNG)
-   # print(limit_list)
+    # print(limit_list)
     # print(limit_dict)
     pic_list, pic_dict = data_to_cut(PIC_ENDUNG)
+    # sorted lists are being connected to one
     paar_list = paar_sort(limit_list, pic_list)
     results = []
+    # for loop takes cut videos and pictures, puts it into the list limit_dict and pic_dict, then appends it to list results
     for paar in paar_list:
         cut_vid = paar[0]
         cut_pic = paar[1]
@@ -127,5 +124,3 @@ def pic_vid_connection():
         picture_value = pic_dict[cut_pic]
         results.append([video_value, picture_value])
     return results
-
-
