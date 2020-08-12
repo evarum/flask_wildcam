@@ -1,11 +1,24 @@
 import os
-from flaskr.flask_app.config import PATH, PIC_ENDUNG, VID_ENDUNG
+from flaskr.flask_app.config import PATH, PIC_ENDUNG, VID_ENDUNG, DATE_FORMAT, TIME_FORMAT
 
-# creates dictionary with three connected keys filename, date, time
+
+# creates dictionary with two connected keys date, time
 def get_file_meta(filename):
+    # cut includes time information
+    cut = filenames_split(filename)
+    # cut out needed parts
+    year = cut[0:4]
+    month = cut[4:6]
+    day = cut[6:8]
+    hour = cut[8:10]
+    minute = cut[10:12]
+    second = cut[12:14]
+    # format it
+    date = DATE_FORMAT.format(day, month, year)
+    time = TIME_FORMAT.format(hour, minute, second)
     meta = {}
-    meta['date'] = 'u'
-    meta['time'] = 't'
+    meta['date'] = date
+    meta['time'] = time
     return meta
 
 # assignment of date,time to element in folder (picture or video)
