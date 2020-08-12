@@ -70,7 +70,7 @@ def data_to_cut(end):
         cut_elements[cut_element] = element
     # keys of cut_elements to list
     list_cut_element = list(cut_elements.keys())
-    # sorted list new to old
+    # sorted list old to new
     list_cut_element.sort()
     return list_cut_element, cut_elements
 
