@@ -4,21 +4,23 @@ from flaskr.flask_app.config import PATH, PIC_ENDUNG, VID_ENDUNG
 #creates dictionary with three connected keys filename, date, time
 def get_file_meta(filename):
     meta = {}
-    meta['filename'] = filename
     meta['date'] = 'u'
     meta['time'] = 't'
-
     return meta
 
 
 #zuordnung von date,time zu element im ordner (bild oder video)
-def data_to_html_file(end):
-    filenames = data_to_cut(end)
+def data_to_html_file():
+    filenames = pic_vid_connection()
     files = []
     #schrittweise zuordnen und speichern von filename
-    for filename in filenames:
-            meta = get_file_meta(filename)
-            files.append(meta)
+    for file_pair in filenames:
+        vid_file = file_pair[0]
+        pic_file = file_pair[1]
+        meta = get_file_meta(vid_file)
+        meta['picture'] = pic_file
+        meta['video'] = vid_file
+        files.append(meta)
     return files
 
 #teilt filename in event, date/time, endung

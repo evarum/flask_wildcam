@@ -8,6 +8,7 @@ from flaskr.flask_app.main import app
 def videos(filename):
     heading = 'Filme'
     file = get_file_meta(filename)
+    file['video'] = filename
     return render_template('video.html',file=file, heading=heading)
 
 

@@ -8,8 +8,8 @@
 
 <OL>
 {% for file in files -%}
-    <li> <img src =	"{{ url_for('images', filename=file['filename']) }}">
-		<a href="https://www.w3schools.com/html/html_links.asp">tutorial</a>
+	<li>
+		<a href="{{ url_for('videos', filename=file['video']) }}"> <img src ="{{ url_for('images', filename=file['picture']) }}"/> </a>
 		<div> {{file['date']}} </div>
 			<div> {{file['time']}} </div>
 	</li>

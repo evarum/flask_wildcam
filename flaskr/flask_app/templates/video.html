@@ -4,7 +4,7 @@
 <h1> Wildkamera 01 </h1>
 <h2>{{file['date']}} {{file['time']}}</h2>
 <video width="320" height="240" controls>
-    <source src="{{ url_for('images', filename=file['filename']) }}" type="video/mkv">
+    <source src="{{ url_for('images', filename=file['video']) }}" type="video/mkv">
     Your browser does not support the video tag.
 </video>
 
