@@ -78,13 +78,17 @@ def paar_sort(list1, list2):
 
         if upper_limit_index >= len(limits_list):
             # last element has no upper_limit in list
-            break
-        upper_limit = int(limits_list[upper_limit_index])
+            upper_limit = None
+        else:
+            upper_limit = int(limits_list[upper_limit_index])
         for element_between in liste_between:
             element_between_int = int(element_between)
             # is element_between bigger/equal than the lower_limit?
             if element_between_int >= lower_limit_int:
-
+                # special case last element
+                if upper_limit is None:
+                    paar.append([lower_limit, element_between])
+                    break
                 # is element_between bigger than the upper_limit?
                 if element_between_int > upper_limit:
                     # exit loop and go to next element_between
@@ -94,16 +98,6 @@ def paar_sort(list1, list2):
                     paar.append([lower_limit,element_between])
                     break
         liste_between.remove(element_between)
-    # we have to deal with the last lower limit seperatly
-    lower_limit = limits_list[-1]
-    lower_limit_int = int(lower_limit)
-    for element_between in liste_between:
-        element_between_int = int(element_between)
-        # is element_between bigger/equal than the lower_limit?
-        if element_between_int >= lower_limit_int:
-            # appending lower_limit and element_between to list paar
-            paar.append([lower_limit, element_between])
-            break
     # giving back the finished sets
     return paar
 

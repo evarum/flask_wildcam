@@ -1,10 +1,8 @@
-#
 from flask import (render_template)
-
 from flaskr.flask_app.helper import get_file_meta
 from flaskr.flask_app.main import app
 
-
+#
 @app.route('/videos/<path:filename>')
 def videos(filename):
     heading = 'Filme'

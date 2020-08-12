@@ -1,19 +1,13 @@
-<!--this Template defines where the video is played-->
+<!-- this Template defines where the video is played -->
 <!DOCTYPE html>
 <html>
 <body>
+<!-- heading (Wilkamera 01) and subheading (date,time) are set -->
 <h1> Wildkamera 01 </h1>
 <h2>{{file['date']}} {{file['time']}}</h2>
 <video width="320" height="240" controls>
     <source src="{{ url_for('images', filename=file['video']) }}" type="video/mkv">
     Your browser does not support the video tag.
 </video>
-
-<!-- <img src =	"{{ url_for('images', filename=file['filename']) }}">
- <a href="https://www.w3schools.com/html/html_links.asp">tutorial</a>
- <div> {{file['date']}} </div>
-     <div> {{file['time']}} </div>-->
-
-
 </body>
 </html>
