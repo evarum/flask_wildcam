@@ -71,17 +71,19 @@ def paar_sort(list1, list2):
     for lower_limit in limits_list:
         lower_limit_int = int(lower_limit)
        # print(lower_limit)
+        # defining upper_limit
+        lower_limit_index = limits_list.index(lower_limit)
+        upper_limit_index = lower_limit_index + 1
+
+        if upper_limit_index >= len(limits_list):
+            # last element has no upper_limit in list
+            break
+        upper_limit = int(limits_list[upper_limit_index])
         for element_between in liste_between:
             element_between_int = int(element_between)
             # is element_between bigger/equal than the lower_limit?
             if element_between_int >= lower_limit_int:
-                # defining upper_limit
-                lower_limit_index = limits_list.index(lower_limit)
-                upper_limit_index = lower_limit_index + 1
 
-                if upper_limit_index >= len(limits_list):
-                    break
-                upper_limit = int(limits_list[upper_limit_index])
                 # is element_between bigger than the upper_limit?
                 if element_between_int > upper_limit:
                     # exit loop and go to next element_between
@@ -90,7 +92,17 @@ def paar_sort(list1, list2):
                     # appending lower_limit and element_between to list paar
                     paar.append([lower_limit,element_between])
                     break
-    liste_between.remove(element_between)
+        liste_between.remove(element_between)
+    # we have to deal with the last lower limit seperatly
+    lower_limit = limits_list[-1]
+    lower_limit_int = int(lower_limit)
+    for element_between in liste_between:
+        element_between_int = int(element_between)
+        # is element_between bigger/equal than the lower_limit?
+        if element_between_int >= lower_limit_int:
+            # appending lower_limit and element_between to list paar
+            paar.append([lower_limit, element_between])
+            break
     print(paar)
     # giving back the finished sets
     return paar
@@ -109,6 +121,8 @@ def pic_vid_connection():
         picture_value = pic_dict[cut_pic]
         results.append([video_value, picture_value])
     return results
+
+# ausführen Beispiel
 x = pic_vid_connection()
 print(x)
 # cut_data_fixed_to_filename(VID_ENDUNG)
