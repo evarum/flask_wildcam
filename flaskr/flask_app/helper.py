@@ -1,19 +1,20 @@
 import os
 from flaskr.flask_app.config import PATH, PIC_ENDUNG, VID_ENDUNG
 
-#creates dictionary with three connected keys filename, date, time
+# Noah
+# creates dictionary with three connected keys filename, date, time
 def get_file_meta(filename):
     meta = {}
     meta['date'] = 'u'
     meta['time'] = 't'
     return meta
 
-
-#zuordnung von date,time zu element im ordner (bild oder video)
+# Eva
+# zuordnung von date,time zu element im ordner (bild oder video)
 def data_to_html_file():
     filenames = pic_vid_connection()
     files = []
-    #schrittweise zuordnen und speichern von filename
+    # schrittweise zuordnen und speichern von filename
     for file_pair in filenames:
         vid_file = file_pair[0]
         pic_file = file_pair[1]
@@ -23,7 +24,8 @@ def data_to_html_file():
         files.append(meta)
     return files
 
-#teilt filename in event, date/time, endung
+# Eva
+# teilt filename in event, date/time, endung
 def filenames_split(video):
     cut = video.split('.')
     cut = cut[0]
@@ -31,16 +33,18 @@ def filenames_split(video):
     cut = cut[1]
     return cut
 
+# Eva
 def cut_data_fixed_to_filename(end):
     list_cut_element, cut_elements = data_to_cut(end)
-    #filenames will be sorted list of cut_elements' values
+    # filenames will be sorted list of cut_elements' values
     filenames = []
     for i in list_cut_element:
-        #element_value list filled with responding values to list_cut_element
+        # element_value list filled with responding values to list_cut_element
         element_value = cut_elements[i]
         filenames.append(element_value)
     return filenames
 
+# Eva
 def data_to_cut(end):
     ext = end
     direc = PATH
@@ -62,6 +66,7 @@ def data_to_cut(end):
     list_cut_element.sort()
     return list_cut_element, cut_elements
 
+# Elfi
 # two sorted lists are compared and written down if they fullfill the following condition: lower_limit <= element_between < upper_limit
 def paar_sort(list1, list2):
     # limits_list sets the borders of possible placement for elements of liste_between
@@ -107,6 +112,7 @@ def paar_sort(list1, list2):
     # giving back the finished sets
     return paar
 
+# Noah
 def pic_vid_connection():
     limit_list, limit_dict = data_to_cut(VID_ENDUNG)
    # print(limit_list)
