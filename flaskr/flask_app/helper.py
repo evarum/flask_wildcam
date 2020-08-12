@@ -39,7 +39,6 @@ def cut_data_fixed_to_filename(end):
         #element_value list filled with responding values to list_cut_element
         element_value = cut_elements[i]
         filenames.append(element_value)
-    print(filenames)
     return filenames
 
 def data_to_cut(end):
@@ -105,7 +104,6 @@ def paar_sort(list1, list2):
             # appending lower_limit and element_between to list paar
             paar.append([lower_limit, element_between])
             break
-    print(paar)
     # giving back the finished sets
     return paar
 
@@ -124,7 +122,4 @@ def pic_vid_connection():
         results.append([video_value, picture_value])
     return results
 
-# ausführen Beispiel
-x = pic_vid_connection()
-print(x)
-# cut_data_fixed_to_filename(VID_ENDUNG)
+
